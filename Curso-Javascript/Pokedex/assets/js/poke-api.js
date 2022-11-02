@@ -1,12 +1,31 @@
 
 const PokeApi = {}
 
-PokeApi.getPokemonsDetail = (pokemon) => {
-    return fetch(pokemon.url)
-    .then((response) => response.json()); //convertendo a requisição de detail em um json
+//interface que instancia a classe pokemon e recebe as informações para formatar a API novo modelo
+function convertPokeApiDetailToPokemon(pokemonDetail) {
+    const pokemon = new Pokemon();
+    pokemon.name = pokemonDetail.name
+    pokemon.numero = pokemonDetail.id
+
+    const types = pokemonDetail.types.map((typeSlot) => typeSlot.type.name) //variavel com os types do pokemon
+    const [type] = types    //transforma os types em uma lista
+
+    pokemon.types = types //type principal
+    pokemon.type = type
+
+    pokemon.photo = pokemonDetail.sprites.other.dream_world.front_default
+
+    return pokemon
+
 }
 
-PokeApi.getPokemons = (offset = 0, limit = 10) => {
+PokeApi.getPokemonsDetail = (pokemon) => {
+    return fetch(pokemon.url)
+    .then((response) => response.json()) //convertendo a requisição de detail em um json
+    .then(convertPokeApiDetailToPokemon)
+}
+
+PokeApi.getPokemons = (offset = 0, limit = 5) => {
 
     const url =`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
     return fetch(url)
