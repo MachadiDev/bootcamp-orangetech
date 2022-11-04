@@ -1,16 +1,17 @@
 const pokemonList = document.getElementById('pokemonList') //acessando a lista do HTML e atribuindo a variável
 const loadMoreButton = document.getElementById('loadMoreButton')
+const searchButton = document.getElementById('pesquisar')
 const limit = 10;
 let offset = 0;
 const maxRecords = 151;
-
+const searchInput = document.getElementById('pesquisar');
 
 
 function loadPokemonItens(offset, limit) {
 
     function convertPokemonToHTML(pokemon) {
         return `
-            <li class="pokemon ${pokemon.type}">
+            <li class="pokemon dropdown ${pokemon.type}">
                 <span class="number">#${pokemon.numero}</span>
                 <span class="name">${pokemon.name}</span>
     
@@ -24,7 +25,18 @@ function loadPokemonItens(offset, limit) {
     
                 </div>
              
-                
+
+                <div class="dropdown-content">
+                    <div class="${pokemon.type}">
+                        <div class="dropdown-head">
+                            <img src="${pokemon.photo}" alt="${pokemon.name}">
+                            <span>Abilities:</span>
+                        </div>
+                        <ol>
+                            ${pokemon.abilities.map((ability) => `<li>${ability}</li>`).join('')} 
+                        </ol>
+                    </div>
+                </div>
             </li>    
         `
     }
@@ -37,6 +49,7 @@ function loadPokemonItens(offset, limit) {
 
 
 loadPokemonItens(offset, limit)
+
 
 loadMoreButton.addEventListener('click', () => {
     offset += limit

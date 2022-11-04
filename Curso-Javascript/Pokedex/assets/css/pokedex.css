@@ -146,6 +146,75 @@
     border-radius: 1rem;
 }
 
+.searchButton {
+    padding: .25rem .5rem;
+    margin: .25rem 0;
+    font-size: 0.8rem;
+    color: #fff;
+    background-color: #6c79db;
+    border: none;
+    border-radius: 1rem;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.content input {
+    border-radius: 1rem;
+    width: 20rem;
+    margin-right: 0.25rem;
+}
+
+
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+.dropdown-content img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.dropdown-content ol {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+}
+
+.dropdown-head {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid black;
+
+}
+
+.dropdown-head span {
+    margin-top: 1rem;
+}
+
+.dropdown-content li {
+    margin: 1rem;
+    padding: 0.25rem;
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 1rem;
+    filter: brightness(1.1);
+}   
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 @media screen and (min-width: 380px) {
     .pokemons {
         grid-template-columns: 1fr 1fr;
